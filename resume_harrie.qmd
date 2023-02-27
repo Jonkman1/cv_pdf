@@ -39,7 +39,7 @@ format:
   \end{multicols}
   \vspace{-0.17cm}
   \begin{multicols}{2}
-    \begin{flushleft}Certificate of Harvard University EdX of prof. dr.Rafael Irizarry\end{flushleft}
+    \begin{flushleft}Certificate of Harvard University EdX \end{flushleft}
   \end{multicols}
   \vspace{-0.25cm}
   \textit{Courses on R basics, visualization, probability, inference  and modeling, productivity tools, wrangling, linear regression, machine learning and capstone}
