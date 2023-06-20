@@ -1,34 +1,168 @@
----
-format: 
-  pdf: 
-    documentclass: article
-    geometry:
-      - top=10mm
-      - left=15mm
-      - right=15mm
-      - bottom=5mm
-      - heightrounded
-    fontfamily: libertinus
-    colorlinks: true
-    fontsize: '16'
-    include-in-header: 
-      text: |
-        \usepackage{multicol}
-        \usepackage{lipsum}
-        \usepackage{hyperref}
-        \pagestyle{empty}
-        \setlength{\multicolsep}{2pt plus 1.0pt minus 0.75pt}% 50% of original values
-        \setlength{\columnsep}{3em}
----
-<!-- TITLE -->
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  16,
+]{article}
+
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage[]{libertinus}
+\ifPDFTeX\else  
+    % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[top=10mm,left=15mm,right=15mm,bottom=5mm,heightrounded]{geometry}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% Make \paragraph and \subparagraph free-standing
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\usepackage{multicol}
+\usepackage{lipsum}
+\usepackage{hyperref}
+\pagestyle{empty}
+\setlength{\multicolsep}{2pt plus 1.0pt minus 0.75pt}% 50% of original values
+\setlength{\columnsep}{3em}
+\makeatletter
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\makeatother
+\makeatletter
+\@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\makeatother
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, borderline west={3pt}{0pt}{shadecolor}, interior hidden, enhanced, boxrule=0pt, sharp corners, breakable]}{\end{tcolorbox}}\fi
+
 \begin{huge}\begin{center}{\bf DR. HARRIE JONKMAN}\end{center}\end{huge}
 
-<!-- CONTACT INFO -->
 \begin{center}harriejonkman@xs4all.nl ∙ \href{https://cvharrie.netlify.app/}{Portfolio} ∙ \href{https://github.com/Jonkman1}{Github} ∙ \href{https://www.linkedin.com/in/harrie-jonkman-5224091a/}{LinkedIn}
 \end{center}
 \vspace{15pt}
 
-<!-- EDUCATION: 1ST BULLET -->
 \begin{large}
   {\bf EDUCATION}
   \vspace{3pt}
@@ -47,7 +181,6 @@ format:
 
 \vspace{0.2cm}
 
-<!-- EDUCATION: 2ND BULLET -->
 \begin{large}
   \begin{multicols}{2}
     \begin{flushleft}{\bf Faculty of Psychology and Pedagogy, Vrije University of Amsterdam, Netherlands}\end{flushleft}
@@ -62,8 +195,6 @@ format:
 \end{large}
 \vspace{3pt}
 
-
-<!-- EDUCATION: 3th BULLET -->
 \begin{large}
   \begin{multicols}{2}
     \begin{flushleft}{\bf NVO/Organisation of Pedagogy and Educational Studies, Netherlands}\end{flushleft}
@@ -78,7 +209,6 @@ format:
 \end{large}
 \vspace{3pt}
 
-<!-- EDUCATION: 4th BULLET -->
 \begin{large}
   \begin{multicols}{2}
     \begin{flushleft}{\bf University of Grongingen, Netherlands}\end{flushleft}
@@ -93,7 +223,6 @@ format:
 \end{large}
 \vspace{3pt}
 
-<!-- EDUCATION: 5th BULLET -->
 \begin{large}
   \begin{multicols}{2}
     \begin{flushleft}{\bf University of Utrecht, Netherlands}\end{flushleft}
@@ -108,7 +237,6 @@ format:
 \end{large}
 \vspace{3pt}
 
-<!-- SKILLS -->
 \begin{large}{\bf SKILLS}
   \vspace{3pt}
   \hrule
@@ -118,8 +246,6 @@ format:
 \emph{Languages and Tools} - R, Stan/WinBUGS, MLWin, Stata, Bash, Git, Github Actions, Quarto   
 \emph{Selected Coursework} - visualization, probability, inference  and modeling, productivity tools, wrangling, linear regression, multilevel analysis, Bayesian statistics, machine learning
 \end{large}
-
-<!-- Positions : -->
 
 \begin{large}{\bf POSITIONS}
   \vspace{3pt}
@@ -136,12 +262,13 @@ format:
   {multicols}
 \end{large}
 \vspace{-0.16cm}
-*Guiding students in writing their masterthesis on Forensic Orthopedagogy at Graduate School of Child Development and Education
+
+*Guiding students in writing their masterthesis on Forensic
+Orthopedagogy at Graduate School of Child Development and Education
 
 \vspace{7pt}
 
-
-  \begin{large}
+\begin{large}
   \begin{multicols}{2}
     \begin{flushleft}{\bf \href{https://www.verwey-jonker.nl/}{Verwey-Jonker Institute}}\end{flushleft}
     \begin{flushright}2008-2022\end{flushright}
@@ -153,10 +280,15 @@ format:
   {multicols}
 \end{large}
 \vspace{-0.16cm}
-* Conducting experiments and evaluations of social programs, longitudinal studies, and international comparative studies on youth.
+
+\begin{itemize}
+\tightlist
+\item
+  Conducting experiments and evaluations of social programs,
+  longitudinal studies, and international comparative studies on youth.
+\end{itemize}
 
 \vspace{7pt}
-
 
 \begin{large}
   \begin{multicols}{2}
@@ -170,11 +302,15 @@ format:
   {multicols}
 \end{large}
 \vspace{-0.16cm}
-* Implementing and guiding youth projects and programs in dozens cities, communities and schools in Netherlands, and other countries.
 
+\begin{itemize}
+\tightlist
+\item
+  Implementing and guiding youth projects and programs in dozens cities,
+  communities and schools in Netherlands, and other countries.
+\end{itemize}
 
 \vspace{7pt}
-
 
 \begin{large}
   \begin{multicols}{2}
@@ -188,10 +324,14 @@ format:
   {multicols}
 \end{large}
 \vspace{-0.16cm}
-* Conducting reports for juvenile courts.
+
+\begin{itemize}
+\tightlist
+\item
+  Conducting reports for juvenile courts.
+\end{itemize}
 
 \vspace{7pt}
-
 
 \begin{large}
   \begin{multicols}{2}
@@ -205,11 +345,16 @@ format:
   {multicols}
 \end{large}
 \vspace{-0.16cm}
-* Developing, guiding and funding youth projects and programs for schools, musea and youth organisations on second world war, wars and human rights.
 
+\begin{itemize}
+\tightlist
+\item
+  Developing, guiding and funding youth projects and programs for
+  schools, musea and youth organisations on second world war, wars and
+  human rights.
+\end{itemize}
 
 \vspace{7pt}
-
 
 \begin{large}
   \begin{multicols}{2}
@@ -223,11 +368,15 @@ format:
   {multicols}
 \end{large}
 \vspace{-0.16cm}
-* Guiding schools and teachers on education development for children with special developmental needs in Utrecht and in 't Gooi.  
 
+\begin{itemize}
+\tightlist
+\item
+  Guiding schools and teachers on education development for children
+  with special developmental needs in Utrecht and in 't Gooi.
+\end{itemize}
 
 \vspace{7pt}
-
 
 \begin{large}
   \begin{multicols}{2}
@@ -241,11 +390,16 @@ format:
   {multicols}
 \end{large}
 \vspace{-0.16cm}
-* Conducting research on development of criminal and anti-behaviour in the contexts of family, school and friends and their societal perspective.
 
+\begin{itemize}
+\tightlist
+\item
+  Conducting research on development of criminal and anti-behaviour in
+  the contexts of family, school and friends and their societal
+  perspective.
+\end{itemize}
 
 \vspace{7pt}
-
 
 \begin{large}{\bf OTHER POSITIONS}
   \vspace{3pt}
@@ -263,11 +417,12 @@ format:
   {multicols}
 \end{large}
 \vspace{-0.16cm}
-*Vice chair of the Steering Committee of the Stichting Openbaar Basisonderwijs Westelijke Tuinsteden, for 16 schools of primary public education in Amsterdam.
 
+*Vice chair of the Steering Committee of the Stichting Openbaar
+Basisonderwijs Westelijke Tuinsteden, for 16 schools of primary public
+education in Amsterdam.
 
 \vspace{7pt}
-
 
 \begin{large}
   \begin{multicols}{2}
@@ -281,8 +436,11 @@ format:
   {multicols}
 \end{large}
 \vspace{-0.16cm}
-*Member of Steering Committee of Stichting Orion, for 9 schools of primary and secondary special education. We built up this public school organisation for children with special developmental problems in Amsterdam.
 
+*Member of Steering Committee of Stichting Orion, for 9 schools of
+primary and secondary special education. We built up this public school
+organisation for children with special developmental problems in
+Amsterdam.
 
 \vspace{7pt}
 
@@ -298,14 +456,13 @@ format:
   {multicols}
 \end{large}
 \vspace{-0.16cm}
-*Member of Steering Committee of the Gooische Scholen Federatie, for schools of secondary education in Gooi and Vechtstreek, Netherlands. We built up this school organisation.
 
+*Member of Steering Committee of the Gooische Scholen Federatie, for
+schools of secondary education in Gooi and Vechtstreek, Netherlands. We
+built up this school organisation.
 
 \vspace{7pt}
 
-
-
-<!-- RESEARCH GRANTS AND AWARDS :  -->
 \begin{large}{\bf RESEARCH GRANTS AND AWARDS}
   \vspace{3pt}
   \hrule
@@ -517,125 +674,146 @@ format:
 
 \vspace{7pt}
 
-<!--  PuBLICATIONS: -->
 \begin{large}
   {\bf PUBLICATIONS SELECTION}
   \vspace{3pt}
   \hrule
 \end{large}
 
-
-Jonkman, H., Rooijen, M., Wiersma, M. & Goor, R. van (2022). Validation study of the Child and Youth Resilience Measure CYRM-28 among Dutch Youth, \emph{Frontiers in Psychiatry, see: https://www.frontiersin.org/articles/10.3389/fpsyt.2022.637760/full}. 
+Jonkman, H., Rooijen, M., Wiersma, M. \& Goor, R. van (2022). Validation
+study of the Child and Youth Resilience Measure CYRM-28 among Dutch
+Youth,
+\emph{Frontiers in Psychiatry, see: https://www.frontiersin.org/articles/10.3389/fpsyt.2022.637760/full}.
 
 \vspace{3pt}
-  
-Jonkman, H., Slotboom, A.M., Weerman, F., Eerten, J.J. van (2022). 
+
+Jonkman, H., Slotboom, A.M., Weerman, F., Eerten, J.J. van (2022).
 \emph{Onderwijs, identiteitsontwikkeling bij jongeren en hun omgang met idealen. Een studie naar het ontstaan van radicalisering in de vroege adolescentie en de rol van onderwijs hierin. Utrecht: Verwey-Jonker Instituut}.
 
 \vspace{3pt}
-  
-Fransen, G., Pieters, M., Bogt, M. Ter, Mulder, G., Mourits, K., Jonkman, H., Molleman, G., Hosman, C. (2022). De nieuwe volksgezondheidsexpert als gamechanger in een stevige preventie-infrastructuur. 
+
+Fransen, G., Pieters, M., Bogt, M. Ter, Mulder, G., Mourits, K.,
+Jonkman, H., Molleman, G., Hosman, C. (2022). De nieuwe
+volksgezondheidsexpert als gamechanger in een stevige
+preventie-infrastructuur.
 \emph{TSG Tijdschr Gezondheidswet, 100 (Suppl 3): S129-S133, see: https://doi.org/10.1007/s12508-022-00363-w}
 
 \vspace{3pt}
-  
-Crone, M.R. en Jonkman, H. (2022). 
+
+Crone, M.R. en Jonkman, H. (2022).
 \emph{Programma’s, praktijk en professionals. Werkzame elementen in preventieve opvoedinterventies. Utrecht: Verwey-Jonker Instituut}
 
 \vspace{3pt}
-  
-Fang, Y., Raat, H., Windhorst, D.A. Fierloos, I.N., Jonkman, H., Hosman, C.M.H., Crone, M.R., Jansen, W. & 
-Grieken, A. van (2022). The association between stressful life events and emotional and behavioral problems in children 0-7 years old: The CIKEO-study. 
+
+Fang, Y., Raat, H., Windhorst, D.A. Fierloos, I.N., Jonkman, H., Hosman,
+C.M.H., Crone, M.R., Jansen, W. \& Grieken, A. van (2022). The
+association between stressful life events and emotional and behavioral
+problems in children 0-7 years old: The CIKEO-study.
 \emph{International Journal of Environment Research and Public Health, 
 19, 1650, see: https://doi.org/10.3390/ijerph19031650}
 
 \vspace{3pt}
-  
-Farrington, D.P., Jonkman, H. & Groeger-Roth, F.(2021). \emph{Delinquency and Substance Use in Europe: Understanding Risk and Protective Factors. New York: Springer, see: https://link.springer.com/book/10.1007/978-3-030-58442-9}
+
+Farrington, D.P., Jonkman, H. \& Groeger-Roth, F.(2021).
+\emph{Delinquency and Substance Use in Europe: Understanding Risk and Protective Factors. New York: Springer, see: https://link.springer.com/book/10.1007/978-3-030-58442-9}
 
 \vspace{3pt}
-  
-Jonkman, H., Brock, A., Britt, A. en Winter-Kocak, S. de (2021), 
+
+Jonkman, H., Brock, A., Britt, A. en Winter-Kocak, S. de (2021),
 \emph{Kennis versterken over de verbinding tussen onderwijs en jeugdhulp. Naar een nieuwe onderzoeksprogrammering. Utrecht: NRO/ ZonMw/Verwey-Jonker Instituut}.
 
 \vspace{3pt}
 
-Jonkman, H., Middelkoop, D. van, Boendermaker, L., Loon-Dikkers, A.L.C. van, Zinsmeister, J.H.G., Verheem, 
-E.A. en Otte, K. (2021), 
+Jonkman, H., Middelkoop, D. van, Boendermaker, L., Loon-Dikkers, A.L.C.
+van, Zinsmeister, J.H.G., Verheem, E.A. en Otte, K. (2021),
 \emph{Werken aan de toekomst van JeugdzorgPlus. Samenvattend rapport. Utecht: Verwey-Jonker Instituut}.
 
 \vspace{3pt}
 
-Jonkman, H. & Loon-Diikers, A.L.C. van (2021), 
-\emph{Werken aan de toekomst van JeugdzorgPlus. Het bredere arbeidsperspectief. Utrecht: Verwey-Jonker Instituut}. 
+Jonkman, H. \& Loon-Diikers, A.L.C. van (2021),
+\emph{Werken aan de toekomst van JeugdzorgPlus. Het bredere arbeidsperspectief. Utrecht: Verwey-Jonker Instituut}.
 
 \vspace{3pt}
 
-Jonkman, H. & Crone, M. (2022). 
+Jonkman, H. \& Crone, M. (2022).
 \emph{Programma’s, praktijk en professionals. Werkzame elementen in preventieve opvoedinterventies. Utrecht: Verwey-Jonker Instituut}.
 
 \vspace{3pt}
 
-Rowland, B., Jonkman, H. Steketee, M., Solomon, R., Solomon, S. Catalano, R. & Toumbourou, J.W. (2021), 
-Cross-National Comparison of the Development of Adolescent Problem Behaviour: a 1-Year Longitudinal Study in India, the Netherlands, USA and Australia 
+Rowland, B., Jonkman, H. Steketee, M., Solomon, R., Solomon, S.
+Catalano, R. \& Toumbourou, J.W. (2021), Cross-National Comparison of
+the Development of Adolescent Problem Behaviour: a 1-Year Longitudinal
+Study in India, the Netherlands, USA and Australia
 \emph{Prevention Science, 22(1):62-72: https://doi.org/10.1007/s11121-019-01007-3}
-
 
 \vspace{3pt}
 
-Jonkman, H. (2021). 
+Jonkman, H. (2021).
 \emph{Terugschrijven. Over kennis, ontwikkeling en democratie. Amsterdam, see: http://www.harriejonkman.nl}
 
 \vspace{3pt}
 
-Steketee, M., Jonkman, H., Naber, P. & Distelbrink, M. (2021), Does Teen Triple P affect parenting and the social and emotional behaviours of teenagers? A study of the Positve Parenting Programme in the Netherlands. 
+Steketee, M., Jonkman, H., Naber, P. \& Distelbrink, M. (2021), Does
+Teen Triple P affect parenting and the social and emotional behaviours
+of teenagers? A study of the Positve Parenting Programme in the
+Netherlands.
 \emph{Behaviour Change, First View, p.1-14, see doi: https://doi.org/10.1017/ bec.2021.2}
 
 \vspace{3pt}
 
-Beelmann, A. & Jonkman, H. (2021),
+Beelmann, A. \& Jonkman, H. (2021),
 \emph{Preventie van radicalisering en extremisme. Een kennisbestand voor het Hoger Onderwijs. Utrecht: Verwey-Jonker Instituut}.
 
 \vspace{3pt}
 
-Jonkman, H., Crone, M., Hosman, C., & Raat, H. (2020), 
+Jonkman, H., Crone, M., Hosman, C., \& Raat, H. (2020),
 \emph{Overzicht, samenvatting en conclusies. Werkzame elementen in preventieve opvoedinterventies. Utrecht: Verwey-Jonker Instituut}.
 
 \vspace{3pt}
 
-Hosman, C. & Jonkman, H. (2020), 
+Hosman, C. \& Jonkman, H. (2020),
 \emph{Werken aan publieke en maatschappelijke impact. Werkzame elementen in preventieve opvoedinterventies. Utrecht: Verwey-Jonker Instituut}.
 
 \vspace{3pt}
 
-Windhorst, D.A., Fang, Y., Fierloos, I.N., Crone, M.R., Van Mourik, K., Jonkman, H., Hosman, C.M.H., Jansen, 
-W. en Raat, H.(2019), Evaluation of effectiveness of (elements of) parenting support in daily practice of preventive youth health care; design of a naturalistic effect evaluation in ‘CIKEO’ (consortium integration knowledge promotion effectiveness of parenting interventions). \emph{BMC Public Health 19, 1462, see: doi:10.1186/s12889-019-7785-y}
+Windhorst, D.A., Fang, Y., Fierloos, I.N., Crone, M.R., Van Mourik, K.,
+Jonkman, H., Hosman, C.M.H., Jansen, W. en Raat, H.(2019), Evaluation of
+effectiveness of (elements of) parenting support in daily practice of
+preventive youth health care; design of a naturalistic effect evaluation
+in `CIKEO' (consortium integration knowledge promotion effectiveness of
+parenting interventions).
+\emph{BMC Public Health 19, 1462, see: doi:10.1186/s12889-019-7785-y}
 
 \vspace{3pt}
 
-Boelens, M., Windhorst, D.A., Jonkman, H. et al. (2019), Evaluation of the promising neighbourhoods community program to reduce health inequalities in youth: a protocol of a mixed-methods study, 
+Boelens, M., Windhorst, D.A., Jonkman, H. et al.~(2019), Evaluation of
+the promising neighbourhoods community program to reduce health
+inequalities in youth: a protocol of a mixed-methods study,
 \emph{BMC Public Health 19, 555, see: doi:10.1186/s12889-019-6901-3}
 
 \vspace{3pt}
 
-Jonkman, H., Kolijn, E., Rooijen, M. van, Meijer, L. en Distelbrink, M. (2019), 
-\emph{Investeren in de Toekomst. De effecten van het Peutercollege (2013-2018). Utrecht: Verwey-Jonker Instituut}, 
+Jonkman, H., Kolijn, E., Rooijen, M. van, Meijer, L. en Distelbrink, M.
+(2019),
+\emph{Investeren in de Toekomst. De effecten van het Peutercollege (2013-2018). Utrecht: Verwey-Jonker Instituut},
 
 \vspace{3pt}
 
-Rowland, B., Jonkman, H., Williams, J. & Toumbourou, J.W. (2019), Community variation in adolescent cannabis use in Australia and the Netherlands,
-\emph{Addictive Behaviors, 9, 204-209}.
-
+Rowland, B., Jonkman, H., Williams, J. \& Toumbourou, J.W. (2019),
+Community variation in adolescent cannabis use in Australia and the
+Netherlands, \emph{Addictive Behaviors, 9, 204-209}.
 
 \vspace{3pt}
 
-Jonkman, H. & Wonderen, R. van (2017), The effects of At Home in the Street (TOS): Results of a Dutch community intervention in a four-year study. 
+Jonkman, H. \& Wonderen, R. van (2017), The effects of At Home in the
+Street (TOS): Results of a Dutch community intervention in a four-year
+study.
 \emph{Jounal of Children’s Services. Vol. 12, Issue: 1, pp 32-46, see: htpps://doi.org/10.1108/JCS-03-2017-0005}.
 
 \vspace{3pt}
 
 Jonkman, H., Kocak, S., Meere, F. de en Arkestein, E. (2016),
-\emph{Over vrijheid onderhouden. Evaluatie BZK subsidie Nationaal Comitë 4 en 5 mei. Utrecht: Verwey-Jonker Instituut}. 
+\emph{Over vrijheid onderhouden. Evaluatie BZK subsidie Nationaal Comitë 4 en 5 mei. Utrecht: Verwey-Jonker Instituut}.
 
 \vspace{3pt}
 
@@ -644,114 +822,139 @@ Jonkman, H. en Gruijter, M. de (2016),
 
 \vspace{3pt}
 
-Jonkman, H. (2016), 
-\emph{Ogen blikken op boeken. Over kennis en ontwikkeling in 2015. Amsterdam}. 
+Jonkman, H. (2016),
+\emph{Ogen blikken op boeken. Over kennis en ontwikkeling in 2015. Amsterdam}.
 
 \vspace{3pt}
 
-Jonkman, H., Aussems, C., Steketee, M., Boutellier, H. & Cuijpers, P. (2015), Prevention of problem behaviours among youngsters: The impact of the Community that Care-strategy in the Netherlands (2008-2011),
+Jonkman, H., Aussems, C., Steketee, M., Boutellier, H. \& Cuijpers, P.
+(2015), Prevention of problem behaviours among youngsters: The impact of
+the Community that Care-strategy in the Netherlands (2008-2011),
 \emph{International Journal of Developmental Studies, 9, 37-52}.
 
 \vspace{3pt}
 
-Catalano, R. & Jonkman, H. (2015), International translational research: Promise and caution,
+Catalano, R. \& Jonkman, H. (2015), International translational
+research: Promise and caution,
 \emph{Guest editorial in: International Journal of Developmental Studies, 9, 1-4}.
 
 \vspace{3pt}
 
-Rovis, D., Jonkman, H. and Basic, J. (2015). A multilevel analysis of adverse family relations, school bonding, and risk behaviours among adolescents, 
-\emph{Journal of Child and Family Studies, see: DOI: 10.1007/s10826-015-0223-6}. 
+Rovis, D., Jonkman, H. and Basic, J. (2015). A multilevel analysis of
+adverse family relations, school bonding, and risk behaviours among
+adolescents,
+\emph{Journal of Child and Family Studies, see: DOI: 10.1007/s10826-015-0223-6}.
 
 \vspace{3pt}
 
-Wonderen, R. van & Jonkman, H. (2015), 
+Wonderen, R. van \& Jonkman, H. (2015),
 \emph{De effecten van Thuis Op Straat. Resultaten van een vierjarige studie.Utrecht: Verwey-Jonker Instituut}.
 
 \vspace{3pt}
 
-Jonkman, H. (2015, edited), 
-\emph{Prävention seelischer,emotionaler und verhaltensbezogener Störungen bei jungen Menschen: Fortschritte und Möglichkeiten. Edited version DPT-I, Hannover, Germany}. 
+Jonkman, H. (2015, edited),
+\emph{Prävention seelischer,emotionaler und verhaltensbezogener Störungen bei jungen Menschen: Fortschritte und Möglichkeiten. Edited version DPT-I, Hannover, Germany}.
 
 \vspace{3pt}
 
-Jonkman, H., Steketee, M., Toumbourou, J., Williams, J. & Karly, C. (2014), Cross-national adolescent alcohol use. Comparison of community variation in adolescent heavy alcohol use in Australia and the Netherlands. 
-\emph{Health Promotion International,29(1): 109-117}.
+Jonkman, H., Steketee, M., Toumbourou, J., Williams, J. \& Karly, C.
+(2014), Cross-national adolescent alcohol use. Comparison of community
+variation in adolescent heavy alcohol use in Australia and the
+Netherlands. \emph{Health Promotion International,29(1): 109-117}.
 
 \vspace{3pt}
 
-Steketee, M., Oesterlee, S., Jonkman, H., Hawkins, J.D., Haggerty, K.P. & Aussems, C. (2013). Transforming prevention systems in the United States and the Netherlands Using Commmunities that Care. Promising prevention in the eyes of Josine Junger-Tas. 
+Steketee, M., Oesterlee, S., Jonkman, H., Hawkins, J.D., Haggerty, K.P.
+\& Aussems, C. (2013). Transforming prevention systems in the United
+States and the Netherlands Using Commmunities that Care. Promising
+prevention in the eyes of Josine Junger-Tas.
 \emph{European Journal of Criminal Policy and Research, 19(2), 99-116}.
 
 \vspace{3pt}
 
-Steketee, M., Jonkman, H., Berten, H. & Vettenburg, N.(eds)(2013), 
-\emph{Alcohol Use Among Adolescents in Europe’. Environmental Research and Preventive Actions. Utrecht: Verwey-Jonker Institute}. 
+Steketee, M., Jonkman, H., Berten, H. \& Vettenburg, N.(eds)(2013),
+\emph{Alcohol Use Among Adolescents in Europe’. Environmental Research and Preventive Actions. Utrecht: Verwey-Jonker Institute}.
 
 \vspace{3pt}
 
-Steketee, M., Jonkman, H., Mak, J., Aussems, C., Huijgen, A. en Roeleveld, W. (2012), 
+Steketee, M., Jonkman, H., Mak, J., Aussems, C., Huijgen, A. en
+Roeleveld, W. (2012),
 \emph{Communities Thtat Care in Nederlandse steden. Resultaten van een vierjarige experimentele studie. Utrecht: Verwey-Jonker Instituut}.
 
 \vspace{3pt}
 
-Oesterle, S., Hawkins, J.D., Steketee, M., Jonkman, H., Browne, E.C., Moll, M., & Haggerty, K.P. (2012), A Cross-National Comparison of Risk and Protective Factors for Adolescent Drug Use and Delinquency in the United States and the Netherlands. 
-\emph{Journal of Drug Issues, vol. 42, p. 337-357}. 
+Oesterle, S., Hawkins, J.D., Steketee, M., Jonkman, H., Browne, E.C.,
+Moll, M., \& Haggerty, K.P. (2012), A Cross-National Comparison of Risk
+and Protective Factors for Adolescent Drug Use and Delinquency in the
+United States and the Netherlands.
+\emph{Journal of Drug Issues, vol. 42, p. 337-357}.
 
 \vspace{3pt}
 
-Jonkman, H. (2012), 
-\emph{Some years of Communities that Care. Learning from a social experiment, Vrije University Amsterdam/Seattle}. 
+Jonkman, H. (2012),
+\emph{Some years of Communities that Care. Learning from a social experiment, Vrije University Amsterdam/Seattle}.
 
 \vspace{3pt}
 
-Jonkman, H., Cuijpers, P. & Boutellier, H. (2010). Different worlds, common roots. A multilevel analysis of youth violence and delinquency in the Netherlands Antilles as a basis for crime prevention, 
-\emph{Wellbeing and social policy, 6(2), 2010, 25-45}. 
+Jonkman, H., Cuijpers, P. \& Boutellier, H. (2010). Different worlds,
+common roots. A multilevel analysis of youth violence and delinquency in
+the Netherlands Antilles as a basis for crime prevention,
+\emph{Wellbeing and social policy, 6(2), 2010, 25-45}.
 
 \vspace{3pt}
 
-Jonkman, H., Boutellier, H., Cuijpers, P., Looy, P. van & Twisk, J. (2010), Prevention of anti-social behaviour in an urban context. Where to begin, what to target, what to expect? 
+Jonkman, H., Boutellier, H., Cuijpers, P., Looy, P. van \& Twisk, J.
+(2010), Prevention of anti-social behaviour in an urban context. Where
+to begin, what to target, what to expect?
 \emph{Crime Prevention and Community Safety, 
-13(2), 102-118}. 
+13(2), 102-118}.
 
 \vspace{3pt}
 
-Jonkman, H.B., Haggerty, K.P., Steketee, M., Fagan, A., Hanson, K., & Hawkins, J.D. (2009), Communities that Care, core elements and context: Research of implementation in two countries, 
-\emph{Social Development Issues, 30(3), 42-57}. 
+Jonkman, H.B., Haggerty, K.P., Steketee, M., Fagan, A., Hanson, K., \&
+Hawkins, J.D. (2009), Communities that Care, core elements and context:
+Research of implementation in two countries,
+\emph{Social Development Issues, 30(3), 42-57}.
 
-
-
-<!--  Additional: -->
 \begin{large}
   {\bf ADDITIONAL}
   \vspace{3pt}
   \hrule
 \end{large}
 
-
 \emph{Harrie's Hoekje, my blog on developments in modern data analysis, see https://harrieshoekje.netlify.app/}.
 
-\emph{NSC-R Workshops, I developed a blog for weekly data analysis blog on data science using R, Netherlands Centre for the Study on Crime and Law Enforcement, see https://nscrweb.netlify.app/blog.html} 
+\emph{NSC-R Workshops, I developed a blog for weekly data analysis blog on data science using R, Netherlands Centre for the Study on Crime and Law Enforcement, see https://nscrweb.netlify.app/blog.html}
 
-
-<!--  Presentations: -->
 \begin{large}
   {\bf PRESENTATIONS SELECTION}
   \vspace{3pt}
   \hrule
 \end{large}
-- Elicitation of effects;Working at public and social impact, ZonMW | 2020 
 
-- Extremism, radicalization and prevention, Gent, Belgium | 2019
+\begin{itemize}
+\item
+  Elicitation of effects;Working at public and social impact, ZonMW
+  \textbar{} 2020
+\item
+  Extremism, radicalization and prevention, Gent, Belgium \textbar{}
+  2019
+\item
+  Health for all, Ryeka, Croatia \textbar{} 2016
+\item
+  Prevention Days, Frankfurt, Germany \textbar{} 2015
+\item
+  Prevention Days, Karlsruhe, Germany \textbar{} 2014
+\item
+  European Society of Prevention Research, Mallorca, Spain \textbar{}
+  2014
+\item
+  Ministry of Health, Stockholm, Sweden \textbar{} 2013
+\item
+  European Society of Prevention Research, Krakow, Poland \textbar{}
+  2012
+\end{itemize}
 
-- Health for all, Ryeka, Croatia | 2016
 
-- Prevention Days, Frankfurt, Germany | 2015
 
-- Prevention Days, Karlsruhe, Germany | 2014
-
-- European Society of Prevention Research, Mallorca, Spain | 2014
-
-- Ministry of Health, Stockholm, Sweden | 2013
-
-- European Society of Prevention Research, Krakow, Poland | 2012
-
+\end{document}
