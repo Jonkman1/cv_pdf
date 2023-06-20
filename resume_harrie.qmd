@@ -120,9 +120,27 @@ format:
 \end{large}
 
 <!-- Positions : -->
+
 \begin{large}{\bf POSITIONS}
   \vspace{3pt}
   \hrule
+  \begin{large}
+  \begin{multicols}{2}
+    \begin{flushleft}{\bf \href{https://www.uva.nl/}{University of Amsterdam}}\end{flushleft}
+    \begin{flushright}2023\end{flushright}
+  \end{multicols}
+  \vspace{-0.17cm}
+  \begin{multicols}{2}
+    \begin{flushleft}\textit{Senior Researcher}\end{flushleft}
+    \begin{flushright}Amsterdam\end{flushright}\end
+  {multicols}
+\end{large}
+\vspace{-0.16cm}
+*Guiding students in writing their masterthesis on Forensic Orthopedagogy at Graduate School of Child Development and Education
+
+\vspace{7pt}
+
+
   \begin{large}
   \begin{multicols}{2}
     \begin{flushleft}{\bf \href{https://www.verwey-jonker.nl/}{Verwey-Jonker Institute}}\end{flushleft}
